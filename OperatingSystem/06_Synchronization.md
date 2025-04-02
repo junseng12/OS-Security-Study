@@ -37,6 +37,9 @@
 
 **Race Condition**  
 여러 프로세스가 동일 데이터에 접근할 때, 수행 순서에 따라 결과가 달라지는 문제.
+
+![image](https://github.com/user-attachments/assets/cc228596-3384-4be8-b308-60b962d8ad59)
+
 ![image](https://github.com/user-attachments/assets/5f7cb42b-44b2-4a12-8a5e-7293996d98da)
 
 > 예시: Producer-Consumer 문제  
