@@ -38,9 +38,8 @@
 **Race Condition**  
 여러 프로세스가 동일 데이터에 접근할 때, 수행 순서에 따라 결과가 달라지는 문제.
 
-![image](https://github.com/user-attachments/assets/cc228596-3384-4be8-b308-60b962d8ad59)
+![image](https://github.com/user-attachments/assets/f2ab49e4-9598-4391-9e05-7bb3eed78d00){: width="300" height="100"}
 
-![image](https://github.com/user-attachments/assets/5f7cb42b-44b2-4a12-8a5e-7293996d98da)
 
 > 예시: Producer-Consumer 문제  
 > 생산자와 소비자가 공유 버퍼를 사용할 때, 동기화 없이 동시에 접근하면 버퍼 오염, 데이터 유실 등의 문제가 발생할 수 있다.
