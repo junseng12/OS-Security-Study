@@ -75,5 +75,3 @@ and we plan to study the following in the next step:
 - [ ] Continue to prepare for advancement to the lab by regularly adding system security paper reviews
 
 ---
-
-# OS-Security-Study
