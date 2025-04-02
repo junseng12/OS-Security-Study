@@ -69,13 +69,20 @@ counter--; /* consume the item in next consumed */
 
 ### 🚧 Critical-Section Problem
 
-**Critical Section:** 공유 자원에 동시에 접근하면 문제가 발생할 수 있는 코드 영역
+**Critical Section** : **공유 자원(변수, table, file 등)**에 동시에 접근하면 문제가 발생할 수 있는 코드 영역
 
 **필수 조건**
 
-- Mutual Exclusion (상호 배제)
-- Progress (진행 보장)
-- Bounded Waiting (한정된 대기)
+- ① Mutual Exclusion (상호 배제)
+  독점권 행사(부여)
+- ② Progress (진행 보장)
+  아무도 그 내부에 존재하지 않을 때, 들어갈 수 있어야 함
+- ③ Bounded Waiting (한정된 대기)
+  Critical-Section에 누가 있는 경우 기다리지만, 그 시간에 한정이 있어야 함
+
+> > 커널의 preemptive, non-preemptive 두 가지 접근법
+> > **Preemptive** : 어느 proc가 CPU를 차지하여 동작하더라도 더 우선순위 높은 것이 그 CPU 사용권 빼앗을 수 있음
+> > **Non-preemptive** : 어느 proc가 CPU 차지하여 동작 시에 그 CPU 할당 종료(커널 모드를 빠져나갈 때, block 상태일 때, 스스로 CPU 양보할 때)까지 다른 proc에서 사용권 가져올 수 없음
 
 ---
 
@@ -85,10 +92,18 @@ counter--; /* consume the item in next consumed */
 
 ```c
 flag[i] = true;
+//turn = i라 설정하면, 나중에 수행되는 j가 turn값을 overwrite하면서 j가 늦게 수행되었음에도 j가 사용할 차례가 된다는 것은 불공정(상대방 차례임을 명시하는 것이 공정)
 turn = j;
+// i의 입장에서 j보다 한 발 늦은 것
+//j의 flag가 false되거나 i turn이 되는 것을 무한 대기
+// 이 조건에서 벗어났다는 것은 i가 critical section에 들어가도 된다는 것
 while (flag[j] && turn == j);
-// critical section
+
+
+/* critical section */
+//i process가 critical section 내 활동을 모두 수행한 상태
 flag[i] = false;
+/* remainder section */
 ```
 
 ---
