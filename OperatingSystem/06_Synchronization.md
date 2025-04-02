@@ -49,6 +49,7 @@
 **Critical Section:** 공유 자원에 동시에 접근하면 문제가 발생할 수 있는 코드 영역
 
 **필수 조건**
+
 - Mutual Exclusion (상호 배제)
 - Progress (진행 보장)
 - Bounded Waiting (한정된 대기)
@@ -72,14 +73,17 @@ flag[i] = false;
 ### ⚙️ 하드웨어 기반 동기화
 
 #### Disable Interrupts
+
 단일 프로세서 환경에서 인터럽트를 비활성화하여 독점 실행 보장
 
 #### Memory Barriers
+
 Weakly ordered 메모리 모델에서 메모리 접근 순서를 강제
 
 #### Atomic Instructions
 
 - Test-and-Set
+
 ```c
 boolean test_and_set(boolean *target) {
     boolean rv = *target;
@@ -89,6 +93,7 @@ boolean test_and_set(boolean *target) {
 ```
 
 - Compare-and-Swap
+
 ```c
 int compare_and_swap(int *value, int expected, int new_value) {
     int temp = *value;
@@ -114,6 +119,7 @@ int compare_and_swap(int *value, int expected, int new_value) {
 - Binary Semaphore와 Counting Semaphore로 구분
 
 **Busy-waiting vs No-busy-waiting**
+
 - Busy: 빠르지만 CPU 낭비
 - No-busy: 효율적인 자원 관리
 
