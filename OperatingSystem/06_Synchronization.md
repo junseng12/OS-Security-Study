@@ -109,7 +109,7 @@ flag[i] = false;
 ```
 
 > > - Peterson’s Solution 문제점(CPU나 compiler 개입 시 정상 동작 불가능)
-> >   일반적인 경우, 제대로 동작하나 CPU나 compiler가 optimization을 위해 Peterson’s Solution program code의 수행 순서 바꿀 수 있음
+> >   일반적인 경우, 제대로 동작하나 CPU나 compiloptimization을 위해 Peterson’s Solution program code의 수행 순서 바꿀 수 있음
 > >   (이때, multithread는 제대로 동작 X - race condition 발생)
 
 ---
@@ -118,13 +118,28 @@ flag[i] = false;
 
 #### Disable Interrupts
 
-단일 프로세서 환경에서 인터럽트를 비활성화하여 독점 실행 보장git
+단일 프로세서 환경에서 인터럽트를 비활성화하여 독점 실행 보장
 
-#### Memory Barriers
+##### 그 밖의 세 가지 형태 hardware support
 
-Weakly ordered 메모리 모델에서 메모리 접근 순서를 강제
+- A. Memory Barriers
+  Weakly ordered 메모리 모델에서 메모리 접근 순서를 강제 (Weakly ordered의 일종)
+  memory barrier를 선언해놓는 그 순간까지는 업데이트를 지연시켜도 된다는 것
+- B. Hardware instructions
+- C. Atomic variables
 
-#### Atomic Instructions
+> > Memory model : 컴퓨터 구조가 AP을 실행할 수 있도록 보장하는 메모리
+> >
+> > - Memory models 두 가지 존재(Multiprocessor, computer 환경에서 데이터 공유 시, 쓰는 전략)
+> >   ➢ Strongly ordered
+> >   한 CPU가 Write하면, 다른 CPU가 즉시 확인할 수 있어야 함 (간단하고 문제 없겠지만, 성능에 악영향을 미침)
+> >   ➢ Weakly ordered
+> >   한 CPU가 Write해도, 즉시 전파할 필요가 없음(문제가 생기지 않을 때까지 전파 X)
+> >   ex. 어떤 data를 업데이트 했는데, 다른 CPU나 컴퓨터에서 이를 사용하지 않을 경우
+
+#### B. Hardware instructions 코드 예제
+
+하드웨어 명령어(Test-and-Set, Compare-and-Swap 등)는 인터럽트 없이 Instruction Cycle 동안 원자적으로 실행되며, 이는 수행 후 인터럽트가 체크되는 구조와 복합 동작을 단일 명령어로 제공하는 하드웨어 기능 덕분이다. 이를 통해 Critical Section을 보호할 수 있다.
 
 - Test-and-Set
 
@@ -147,6 +162,25 @@ int compare_and_swap(int *value, int expected, int new_value) {
 }
 ```
 
+#### Atomic Variables 코드 예제
+
+어떤 값에 대해서 변화를 시키는 동작이 atomic하게 이루어지는 변수
+
+- Increment
+
+```c
+void increment(atomic_int *v)
+{
+	int temp;
+	do {
+		temp = *v;
+	}
+	//v값을 temp에 넣고 v == temp면, temp를 하나 증가시켜 v에다 넣음
+	(v == temp가 아니면 그 사이에 누군가가 끼여 값에 변화를 일으켰다는 것)
+	while (temp != (compare_and_swap(v,temp,temp+1));
+}
+```
+
 ---
 
 ### 🔒 Mutex Locks
@@ -159,13 +193,35 @@ int compare_and_swap(int *value, int expected, int new_value) {
 ### 🔑 Semaphores
 
 - 자원 수를 정수 값으로 관리
-- wait(), signal() 연산
+- wait(), signal() 연산 사용
 - Binary Semaphore와 Counting Semaphore로 구분
 
 **Busy-waiting vs No-busy-waiting**
 
-- Busy: 빠르지만 CPU 낭비
-- No-busy: 효율적인 자원 관리
+- Busy Waiting: CPU 계속 사용, 짧은 대기 시 효율적
+- No-Busy-Waiting: 대기 큐 사용, block()/wakeup()로 효율적 자원 관리
+
+- Wait, Signal 코드 예제
+
+```c
+wait(semaphore *S) {
+    S->value--;
+    if (S->value < 0) { // 자원 없으면 대기 리스트 추가
+        add this process to S->list;
+        block();
+    }
+}
+
+signal(semaphore *S) {
+    S->value++;
+    if (S->value <= 0) { // 대기 프로세스 있으면 깨움
+        remove a process P from S->list;
+        wakeup(P);
+    }
+}
+```
+
+**문제**: Deadlock, Priority Inversion 가능
 
 ---
 
