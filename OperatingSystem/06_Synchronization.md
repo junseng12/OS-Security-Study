@@ -38,32 +38,9 @@
 **Race Condition**  
 여러 프로세스가 동일 데이터에 접근할 때, 수행 순서에 따라 결과가 달라지는 문제.
 
-![image](https://github.com/user-attachments/assets/f2ab49e4-9598-4391-9e05-7bb3eed78d00)
-
-
 > 예시: Producer-Consumer 문제  
-> 생산자와 소비자가 공유 버퍼를 사용할 때, 동기화 없이 동시에 접근하면 버퍼 오염, 데이터 유실 등의 문제가 발생할 수 있다.
-
-### Producer
-```c
-while (true) {
-/* produce an item in next produced */ 
-while (counter == BUFFER_SIZE) ; /* do nothing */ 
-buffer[in] = next_produced; 
-in = (in + 1) % BUFFER_SIZE; 
-counter++; 
-}
-```
-
-### Consumer
-```c
-while (true) {
-while (counter == 0) ; /* do nothing */ 
-next_consumed = buffer[out]; 
-out = (out + 1) % BUFFER_SIZE; 
-counter--; /* consume the item in next consumed */ 
-}
-```
+> 생산자와 소비자가 공유 버퍼를 사용할 때, 동기화 없이 동시에 접근하면 버퍼 오염, 데이터 유실 등의 문제가 발생할 수 있다.  
+> ![Producer-Consumer 문제 예시](./images/producer-consumer.png)
 
 ---
 
@@ -71,7 +48,7 @@ counter--; /* consume the item in next consumed */
 
 **Critical Section** : **공유 자원(변수, table, file 등)**에 동시에 접근하면 문제가 발생할 수 있는 코드 영역
 
-**필수 조건**
+**필수 조건**git add
 
 - ① Mutual Exclusion (상호 배제)
   독점권 행사(부여)
@@ -81,7 +58,9 @@ counter--; /* consume the item in next consumed */
   Critical-Section에 누가 있는 경우 기다리지만, 그 시간에 한정이 있어야 함
 
 > > 커널의 preemptive, non-preemptive 두 가지 접근법
+
 > > **Preemptive** : 어느 proc가 CPU를 차지하여 동작하더라도 더 우선순위 높은 것이 그 CPU 사용권 빼앗을 수 있음
+
 > > **Non-preemptive** : 어느 proc가 CPU 차지하여 동작 시에 그 CPU 할당 종료(커널 모드를 빠져나갈 때, block 상태일 때, 스스로 CPU 양보할 때)까지 다른 proc에서 사용권 가져올 수 없음
 
 ---
