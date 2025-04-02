@@ -21,26 +21,26 @@ This repository is a space to **learn and record the fundamental principles of s
 ```bash
 📁 OS-Security-Study
 │
-├── 📄 README.md
+├── 📄 README
 │
 ├── 📁 Operating-System-Concepts
-│ ├── Ch01*Operating System Overview.md
-│ ├── Ch02*Process Management.md
-│ ├── Ch03*CPU Scheduling.md
-│ ├── Ch04*Memory Management.md
+│ ├── Ch03*Processes Management
+│ ├── Ch04*Threads
+│ ├── Ch05*Process Synchronization
+│ ├── Ch06*Synchronization
 │ └── ...
 │
 ├── 📁 OS-Security-Fundamentals
-│ ├── System-Calls-Overview.md
-│ ├── Kernel-Security-Basics.md
-│ └── CVE_Concepts.md
+│ ├── System-Calls-Overview
+│ ├── Kernel-Security-Basics
+│ └── CVE_Concepts
 │
 ├── 📁 Paper-Reviews
-│ ├── Heimdall_Kernel_Security.md
-│ └── Linux-Kernel-Exploitations.md
+│ ├── Heimdall_Kernel_Security
+│ └── Linux-Kernel-Exploitations
 │
 └── 📁 Plans-and-TODO
-└── study-plan.md
+└── study-plan
 ```
 
 We aim to foster understanding of security principles at the low level of OS and systems through methods such as organizing OS system concepts, fostering basic OS security concepts, and exploring related papers.
