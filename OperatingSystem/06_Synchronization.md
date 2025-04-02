@@ -90,6 +90,8 @@ counter--; /* consume the item in next consumed */
 
 두 개의 프로세스 간 Critical Section 접근 제어를 위한 소프트웨어 기반 해법
 
+- Algorithm for Process Pi(Pj인 경우 i와 j를 뒤바꾸면 됨
+
 ```c
 flag[i] = true;
 //turn = i라 설정하면, 나중에 수행되는 j가 turn값을 overwrite하면서 j가 늦게 수행되었음에도 j가 사용할 차례가 된다는 것은 불공정(상대방 차례임을 명시하는 것이 공정)
@@ -106,13 +108,17 @@ flag[i] = false;
 /* remainder section */
 ```
 
+> > - Peterson’s Solution 문제점(CPU나 compiler 개입 시 정상 동작 불가능)
+> >   일반적인 경우, 제대로 동작하나 CPU나 compiler가 optimization을 위해 Peterson’s Solution program code의 수행 순서 바꿀 수 있음
+> >   (이때, multithread는 제대로 동작 X - race condition 발생)
+
 ---
 
 ### ⚙️ 하드웨어 기반 동기화
 
 #### Disable Interrupts
 
-단일 프로세서 환경에서 인터럽트를 비활성화하여 독점 실행 보장
+단일 프로세서 환경에서 인터럽트를 비활성화하여 독점 실행 보장git
 
 #### Memory Barriers
 
