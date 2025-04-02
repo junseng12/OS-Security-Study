@@ -18,7 +18,7 @@ This repository is a space to **learn and record the fundamental principles of s
 
 ## 🔍 Repository Structure (How?)
 
-📁 OS-Security-Study
+`📁 OS-Security-Study
 │
 ├── 📄 README.md
 │
@@ -39,7 +39,7 @@ This repository is a space to **learn and record the fundamental principles of s
 │ └── Linux-Kernel-Exploitations.md
 │
 └── 📁 Plans-and-TODO
-└── study-plan.md
+└── study-plan.md`
 
 We aim to foster understanding of security principles at the low level of OS and systems through methods such as organizing OS system concepts, fostering basic OS security concepts, and exploring related papers.
 
@@ -73,4 +73,5 @@ and we plan to study the following in the next step:
 - [ ] Continue to prepare for advancement to the lab by regularly adding system security paper reviews
 
 ---
+
 # OS-Security-Study
