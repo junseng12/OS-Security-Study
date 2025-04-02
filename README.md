@@ -18,28 +18,7 @@ This repository is a space to **learn and record the fundamental principles of s
 
 ## 🔍 Repository Structure (How?)
 
-`📁 OS-Security-Study
-│
-├── 📄 README.md
-│
-├── 📁 Operating-System-Concepts
-│ ├── Ch01*Operating System Overview.md
-│ ├── Ch02*Process Management.md
-│ ├── Ch03*CPU Scheduling.md
-│ ├── Ch04*Memory Management.md
-│ └── ...
-│
-├── 📁 OS-Security-Fundamentals
-│ ├── System-Calls-Overview.md
-│ ├── Kernel-Security-Basics.md
-│ └── CVE_Concepts.md
-│
-├── 📁 Paper-Reviews
-│ ├── Heimdall_Kernel_Security.md
-│ └── Linux-Kernel-Exploitations.md
-│
-└── 📁 Plans-and-TODO
-└── study-plan.md`
+OS-Security-Study │ ├── 📁 Operating-System-Concepts (운영체제 이론 정리) │ ├── Ch01*운영체제개요.md │ ├── Ch02*프로세스관리.md │ ├── Ch03*CPU스케줄링.md │ ├── Ch04*메모리관리.md │ └── ... │ ├── 📁 OS-Security-Fundamentals (시스템 보안 기초 개념) │ ├── System-Calls-Overview.md │ ├── Kernel-Security-Basics.md │ └── CVE_Concepts.md │ ├── 📁 Paper-Reviews (관련 논문 리뷰) │ ├── Heimdall_Kernel_Security.md │ └── Linux-Kernel-Exploitations.md │ └── 📁 Plans-and-TODO (학습 계획 및 향후 목표) └── study-plan.md
 
 We aim to foster understanding of security principles at the low level of OS and systems through methods such as organizing OS system concepts, fostering basic OS security concepts, and exploring related papers.
 
